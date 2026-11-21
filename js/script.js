@@ -192,3 +192,168 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 });
+// GitHub repositories
+const githubUsername = "ZainabAlJarrash";
+
+const githubProfile = document.querySelector("#github-profile");
+const repositorySearch = document.querySelector("#repository-search");
+const repositorySort = document.querySelector("#repository-sort");
+const githubStatus = document.querySelector("#github-status");
+const githubRetry = document.querySelector("#github-retry");
+const repositoryGrid = document.querySelector("#github-repository-grid");
+
+let repositories = [];
+
+async function loadGitHubData() {
+    githubStatus.textContent = "Loading GitHub information...";
+    githubRetry.hidden = true;
+    repositorySearch.disabled = true;
+    repositorySort.disabled = true;
+    repositoryGrid.setAttribute("aria-busy", "true");
+
+    try {
+        const profileResponse = await fetch(
+            `https://api.github.com/users/${githubUsername}`
+        );
+
+        if (!profileResponse.ok) {
+            throw new Error("Could not load GitHub profile.");
+        }
+
+        const profile = await profileResponse.json();
+
+        githubProfile.innerHTML = `
+            <img
+                src="${profile.avatar_url}"
+                alt="${profile.login}'s GitHub profile picture"
+                class="github-avatar"
+            >
+
+            <div class="github-profile-info">
+                <h3>${profile.name || profile.login}</h3>
+                <p>@${profile.login}</p>
+                <p>${profile.public_repos} public repositories</p>
+
+                <a
+                    href="${profile.html_url}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    View GitHub Profile
+                </a>
+            </div>
+        `;
+
+        const repositoriesResponse = await fetch(
+            `https://api.github.com/users/${githubUsername}/repos?per_page=100`
+        );
+
+        if (!repositoriesResponse.ok) {
+            throw new Error("Could not load GitHub repositories.");
+        }
+
+        repositories = await repositoriesResponse.json();
+
+        displayRepositories(repositories);
+
+        repositorySearch.disabled = false;
+        repositorySort.disabled = false;
+
+        githubStatus.textContent =
+            `${repositories.length} public repositories loaded.`;
+    } catch (error) {
+        githubStatus.textContent =
+            "GitHub information could not be loaded. Please try again.";
+
+        githubRetry.hidden = false;
+        console.error(error);
+    } finally {
+        repositoryGrid.setAttribute("aria-busy", "false");
+    }
+}
+
+function displayRepositories(repositoryList) {
+    repositoryGrid.innerHTML = "";
+
+    if (repositoryList.length === 0) {
+        repositoryGrid.innerHTML = `
+            <p class="no-results">
+                No repositories match your search.
+            </p>
+        `;
+        return;
+    }
+
+    repositoryList.forEach((repository) => {
+        const card = document.createElement("article");
+        card.classList.add("github-repository-card");
+
+        card.innerHTML = `
+            <h3>${repository.name}</h3>
+
+            <p>
+                ${repository.description || "No description available."}
+            </p>
+
+            <div class="repository-details">
+                <span>
+                    ${repository.language || "Language not specified"}
+                </span>
+                <span>★ ${repository.stargazers_count}</span>
+            </div>
+
+            <a
+                href="${repository.html_url}"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                View Repository
+            </a>
+        `;
+
+        repositoryGrid.appendChild(card);
+    });
+}
+
+function updateRepositories() {
+    const searchTerm = repositorySearch.value
+        .trim()
+        .toLowerCase();
+
+    const filteredRepositories = repositories.filter((repository) => {
+        const name = repository.name.toLowerCase();
+        const description =
+            (repository.description || "").toLowerCase();
+
+        return (
+            name.includes(searchTerm) ||
+            description.includes(searchTerm)
+        );
+    });
+
+    const sortedRepositories = [...filteredRepositories];
+
+    if (repositorySort.value === "name") {
+        sortedRepositories.sort((a, b) =>
+            a.name.localeCompare(b.name)
+        );
+    } else if (repositorySort.value === "created") {
+        sortedRepositories.sort(
+            (a, b) =>
+                new Date(b.created_at) - new Date(a.created_at)
+        );
+    } else {
+        sortedRepositories.sort(
+            (a, b) =>
+                new Date(b.updated_at) - new Date(a.updated_at)
+        );
+    }
+
+    displayRepositories(sortedRepositories);
+}
+
+repositorySearch.addEventListener("input", updateRepositories);
+repositorySort.addEventListener("change", updateRepositories);
+githubRetry.addEventListener("click", loadGitHubData);
+
+loadGitHubData();
