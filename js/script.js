@@ -296,11 +296,21 @@ function displayRepositories(repositoryList) {
             </p>
 
             <div class="repository-details">
-                <span>
-                    ${repository.language || "Language not specified"}
-                </span>
-                <span>★ ${repository.stargazers_count}</span>
-            </div>
+    <span>
+        ${repository.language || "Language not specified"}
+    </span>
+    <span>★ ${repository.stargazers_count}</span>
+    <span>
+        Updated ${new Date(repository.updated_at).toLocaleDateString(
+            "en-US",
+            {
+                month: "short",
+                day: "numeric",
+                year: "numeric"
+            }
+        )}
+    </span>
+</div>
 
             <a
                 href="${repository.html_url}"
