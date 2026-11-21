@@ -386,6 +386,7 @@ section {
     font-size: 0.82rem;
     font-weight: 700;
 }
+
 /* ---------- GitHub repositories ---------- */
 
 .github-profile {
@@ -457,8 +458,7 @@ section {
 .control-group input:focus,
 .control-group select:focus {
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px
-        color-mix(in srgb, var(--primary-color) 20%, transparent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary-color) 20%, transparent);
 }
 
 .control-group input:disabled,
@@ -523,7 +523,7 @@ section {
     font-size: 1.35rem;
 }
 
-.github-repository-card > p {
+.github-repository-card>p {
     margin-bottom: 20px;
     color: var(--muted-text);
 }
@@ -538,13 +538,13 @@ section {
     font-size: 0.9rem;
 }
 
-.github-repository-card > a {
+.github-repository-card>a {
     align-self: flex-start;
     color: var(--primary-color);
     font-weight: 700;
 }
 
-.github-repository-card > a:hover {
+.github-repository-card>a:hover {
     text-decoration: underline;
 }
 
@@ -717,7 +717,8 @@ section {
 a:focus-visible,
 button:focus-visible,
 input:focus-visible,
-textarea:focus-visible {
+textarea:focus-visible,
+select:focus-visible {
     outline: 3px solid var(--accent-color);
     outline-offset: 3px;
 }
@@ -745,9 +746,10 @@ textarea:focus-visible {
     .interest-grid {
         grid-template-columns: repeat(2, 1fr);
     }
+
     .github-repository-grid {
-    grid-template-columns: 1fr;
-}
+        grid-template-columns: 1fr;
+    }
 }
 
 /* ---------- Mobile layout ---------- */
@@ -798,18 +800,19 @@ textarea:focus-visible {
     .contact-form {
         padding: 22px;
     }
+
     .github-profile {
-    flex-direction: column;
-    text-align: center;
-}
+        flex-direction: column;
+        text-align: center;
+    }
 
-.repository-controls {
-    grid-template-columns: 1fr;
-}
+    .repository-controls {
+        grid-template-columns: 1fr;
+    }
 
-.github-repository-card {
-    padding: 22px;
-}
+    .github-repository-card {
+        padding: 22px;
+    }
 }
 
 /* Reduce animation for users who request it */

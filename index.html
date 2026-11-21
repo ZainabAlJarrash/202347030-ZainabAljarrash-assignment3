@@ -111,7 +111,7 @@
             <div class="project-grid">
                 <article class="project-card">
                     <img src="assets/images/seraj-project.jpg" alt="The Seraj virtual reality game about Saudi culture"
-                    loading="lazy">
+                        loading="lazy">
 
                     <div class="project-card-content">
                         <h3>Seraj</h3>
@@ -132,7 +132,7 @@
 
                 <article class="project-card">
                     <img src="assets/images/networking-assistant.jpg" alt="The Networking Assistant project interface"
-                    loading="lazy">
+                        loading="lazy">
 
                     <div class="project-card-content">
                         <h3>Networking Assistant</h3>
@@ -153,75 +153,52 @@
             </div>
         </section>
         <!-- GitHub repositories section -->
-<section id="github-projects" class="section">
-    <div class="section-heading">
-        <p class="section-label">Live from GitHub</p>
-        <h2>My GitHub Activity</h2>
-        <p class="section-description">
-            This information is loaded directly from my GitHub profile.
-            Search my public repositories or arrange them using the
-            available sorting options.
-        </p>
-    </div>
+        <section id="github-projects" class="section">
+            <div class="section-heading">
+                <p class="section-label">Live from GitHub</p>
+                <h2>My GitHub Activity</h2>
+                <p class="section-description">
+                    This information is loaded directly from my GitHub profile.
+                    Search my public repositories or arrange them using the
+                    available sorting options.
+                </p>
+            </div>
 
-    <div
-        id="github-profile"
-        class="github-profile"
-        aria-live="polite"
-    ></div>
+            <div id="github-profile" class="github-profile" aria-live="polite"></div>
 
-    <div class="repository-controls">
-        <div class="control-group">
-            <label for="repository-search">
-                Search repositories
-            </label>
+            <div class="repository-controls">
+                <div class="control-group">
+                    <label for="repository-search">
+                        Search repositories
+                    </label>
 
-            <input
-                id="repository-search"
-                type="search"
-                placeholder="Search by name or description"
-                autocomplete="off"
-                disabled
-            >
-        </div>
+                    <input id="repository-search" type="search" placeholder="Search by name or description"
+                        autocomplete="off" disabled>
+                </div>
 
-        <div class="control-group">
-            <label for="repository-sort">
-                Sort repositories
-            </label>
+                <div class="control-group">
+                    <label for="repository-sort">
+                        Sort repositories
+                    </label>
 
-            <select id="repository-sort" disabled>
-                <option value="updated">Recently updated</option>
-                <option value="name">Name: A to Z</option>
-                <option value="created">Newest created</option>
-            </select>
-        </div>
-    </div>
+                    <select id="repository-sort" disabled>
+                        <option value="updated">Recently updated</option>
+                        <option value="name">Name: A to Z</option>
+                        <option value="created">Newest created</option>
+                    </select>
+                </div>
+            </div>
 
-    <div
-        id="github-status"
-        class="api-status"
-        role="status"
-        aria-live="polite"
-    >
-        Loading GitHub information...
-    </div>
+            <div id="github-status" class="api-status" role="status" aria-live="polite">
+                Loading GitHub information...
+            </div>
 
-    <button
-        id="github-retry"
-        class="secondary-button"
-        type="button"
-        hidden
-    >
-        Try again
-    </button>
+            <button id="github-retry" class="secondary-button" type="button" hidden>
+                Try again
+            </button>
 
-    <div
-        id="github-repository-grid"
-        class="github-repository-grid"
-        aria-busy="true"
-    ></div>
-</section>
+            <div id="github-repository-grid" class="github-repository-grid" aria-busy="true"></div>
+        </section>
         <!-- Interests section -->
         <section id="interests" class="section section-alt">
             <div class="section-heading">
@@ -289,13 +266,14 @@
             <form id="contact-form" class="contact-form" novalidate>
                 <div class="form-group">
                     <label for="name">Name</label>
-                    <input id="name" name="name" type="text" aria-describedby="name-error"  autocomplete="name" required>
+                    <input id="name" name="name" type="text" aria-describedby="name-error" autocomplete="name" required>
                     <small id="name-error" class="form-error" aria-live="polite"></small>
                 </div>
 
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input id="email" name="email" type="email" aria-describedby="email-error" autocomplete="email" required>
+                    <input id="email" name="email" type="email" aria-describedby="email-error" autocomplete="email"
+                        required>
                     <small id="email-error" class="form-error" aria-live="polite"></small>
                 </div>
 

@@ -57,7 +57,7 @@ The website also handles GitHub API loading and failure states. If the informati
 │   ├── ai-usage-report.md            # Explanation of how AI assisted the project
 │   └── technical-documentation.md    # Details about the technical implementation
 ├── js/
-│   └── script.js                     # Search, validation, theme, greeting, and year functions
+│   └── script.js                     # Search, validation, GitHub API, sorting, theme, greeting, and year functions
 ├── .gitignore                        # Files and folders Git should ignore
 ├── index.html                        # Main structure and content of the portfolio
 └── README.md                         # Project description, features, and setup instructions
@@ -90,7 +90,7 @@ The website was reviewed and tested for loading performance and efficiency. Proj
 
 The image file sizes and dimensions were reviewed to determine whether additional resizing or compression was necessary. The JavaScript also reuses the GitHub repository data after it is retrieved instead of making a new API request whenever the visitor searches or changes the sorting option.
 
-The final website was tested with Chrome Lighthouse.The results were:
+The final website was tested with Chrome Lighthouse. The results were:
 
 - Performance: **99**
 - Accessibility: **100**

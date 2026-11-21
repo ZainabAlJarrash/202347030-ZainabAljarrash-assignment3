@@ -152,7 +152,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Display the correct project count when the page first loads.
         filterProjects();
     }
-    
+
     // Switch between light and dark themes.
     const themeToggle = document.querySelector("#theme-toggle");
     const savedTheme = localStorage.getItem("portfolio-theme");
