@@ -28,7 +28,6 @@ The contact form checks that the name and message are not empty and that the ema
 - JavaScript for search, validation, dynamic text, and theme storage.
 - Git and GitHub for version control.
 
-
 ## Project Structure
 
 ```text
